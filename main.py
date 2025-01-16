@@ -1,4 +1,4 @@
-from create&moveBody import create_Body, move
+from create_moveBody import create_Body, move
 import matplotlib.pyplot as plt
 
 x,y= create_Body(24)
