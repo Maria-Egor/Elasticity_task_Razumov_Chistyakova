@@ -1,8 +1,8 @@
-from create_moveBody import create_Body, move
-from plotTraj import movets
+import methods
 import matplotlib.pyplot as plt
 
-x,y= create_Body(24)
+x,y = methods.create_ring(24)
 plt.plot(x,y,'.')
+plt.grid(color='gray', linestyle='--', linewidth=0.5)
 plt.show()
-movets(0.1, 1, 50, x, y)
+methods.movets(0.1, 1, 50, x, y)
