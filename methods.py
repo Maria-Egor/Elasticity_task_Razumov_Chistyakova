@@ -105,4 +105,7 @@ def deformation(x,y,x_end,y_end):
     plt.plot(x_circle, y_circle, color='blue')
     plt.plot(x_end_c, y_end_c, color='red')
     plt.grid(color='gray', linestyle='--', linewidth=0.5)
+    plt.xlabel('x1')
+    plt.ylabel('x2')
+    plt.title('Деформация тела')
     plt.show()
