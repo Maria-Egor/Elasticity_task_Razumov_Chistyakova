@@ -20,5 +20,5 @@ class Trajectory:
 
 class Streamline:
     def __init__(self, time, x1, x2):
-        self.v1 = np.cosh(time) * x1
+        self.v1 = -np.cosh(time) * x1
         self.v2 = np.sinh(time) * x2
