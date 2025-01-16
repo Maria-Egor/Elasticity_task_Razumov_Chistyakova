@@ -79,8 +79,30 @@ def plot_streamlines(time, x_val, y_val, skip=20):
     plt.show()
 
 def movets(t0, t, n, x, y):
+    endx=[]
+    endy=[]
     for i in range(len(x)):
         res=move(t0, t, n, x[i], y[i])
         plottr(res.x_tr_points, res.y_tr_points)
+        endx.append(res.x_tr_points[len(res.x_tr_points)-1]) #конечная координата по х
+        endy.append(res.y_tr_points[len(res.x_tr_points)-1]) #конечная координата по у
+    plt.grid(color='gray', linestyle='--', linewidth=0.5)
+    plt.show()
+    return endx,endy
+
+def deformation(x,y,x_end,y_end):
+    k=len(x)//2
+    x_circle = x[:k-1]+[x[0]]
+    y_circle= y[:k-1]+[y[0]]
+    x_end_c= x_end[:k-1]+[x_end[0]]
+    y_end_c = y_end[:k - 1] + [y_end[0]]
+    plt.plot(x_circle,y_circle,color='blue')
+    plt.plot(x_end_c,y_end_c,color='red')
+    x_circle = x[k:] + [x[k]]
+    y_circle = y[k:] + [y[k]]
+    x_end_c = x_end[k:] + [x_end[k]]
+    y_end_c = y_end[k:] + [y_end[k]]
+    plt.plot(x_circle, y_circle, color='blue')
+    plt.plot(x_end_c, y_end_c, color='red')
     plt.grid(color='gray', linestyle='--', linewidth=0.5)
     plt.show()
