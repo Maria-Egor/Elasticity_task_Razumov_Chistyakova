@@ -16,20 +16,3 @@ def runge_kutta(t0, dt, x0, y0):
     return x1, y1
 
 
-# проверка работы метода Рунге-Кутты
-"""
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-x = np.zeros(11)
-y = np.zeros(11)
-x[0] = 2
-y[0] = 2
-for i in range(0, 10):
-    x[i + 1], y[i + 1] = runge_kutta(1 / 10 * i, 1 / 10, x[i], y[i])
-t = np.linspace(0, 1, i + 2)
-
-plt.plot(t, x)
-plt.show()
-"""
