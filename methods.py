@@ -1,5 +1,6 @@
 import math
 import matplotlib.pyplot as plt
+import numpy as np
 import models
 
 def create_ring(n):
@@ -59,7 +60,7 @@ def plot_streamlines(time, min_val, max_val, skip=20):
     y_vals = np.linspace(1, max_val, max_val * 10 + 1)
     x, y = np.meshgrid(x_vals, y_vals)
 
-    s = Streamline(time, x, y)
+    s = models.Streamline(time, x, y)
 
     x_decimated = x[::skip, ::skip]
     y_decimated = y[::skip, ::skip]
