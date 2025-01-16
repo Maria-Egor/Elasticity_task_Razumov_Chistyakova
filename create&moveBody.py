@@ -4,8 +4,8 @@ import math
 def create_Body(n):
     coord_x = []  # массив из координат точек
     coord_y = []  # массив из координат точек
-    x_c = 1  # положение центра кольца
-    y_c = 1
+    x_c = 3  # положение центра кольца
+    y_c = 3
     for r in range(3):
         for i in range(n):
             alpha = 2 * math.pi * i / n #угол
@@ -16,9 +16,15 @@ def create_Body(n):
             coord_y.append(y1)
     return coord_x, coord_y
 
-""" проверка работы кода
-import matplotlib.pyplot as plt
 
-x, y = create_Body(24)
-plt.plot(x, y,'o')
-plt.show()"""
+def move(t0, t, n, x0, y0):
+    h = t / n
+    tr = models.Trajectory()
+    prx = x0
+    pry = y0
+    for i in range(n):
+        x, y = runge_kutta(t0 + h * i, h, prx, pry)
+        tr.add(x, y)
+        prx = x
+        pry = y
+    return tr
