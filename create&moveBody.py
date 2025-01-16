@@ -1,5 +1,5 @@
 import math
-
+from RungeKutta import runge_kutta
 
 def create_Body(n):
     coord_x = []  # массив из координат точек
