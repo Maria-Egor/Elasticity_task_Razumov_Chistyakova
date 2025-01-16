@@ -38,13 +38,11 @@ def runge_kutta(t0, dt, x0, y0):
 def move(t0, t, n, x0, y0):
     h = t / n
     tr = models.Trajectory()
-    prx = x0
-    pry = y0
+    x = x0
+    y = y0
     for i in range(n):
-        x, y = runge_kutta(t0 + h * i, h, prx, pry)
+        x, y = runge_kutta(t0 + h * i, h, x, y)
         tr.add(x, y)
-        prx = x
-        pry = y
     return tr
 
 
@@ -55,9 +53,9 @@ def plottr(x,y):
     plt.title('Траектория')
     plt.grid()
 
-def plot_streamlines(time, min_val, max_val, skip=20):
-    x_vals = np.linspace(1,min_val, abs(min_val) * 10 + 1)
-    y_vals = np.linspace(1, max_val, max_val * 10 + 1)
+def plot_streamlines(time, x_val, y_val, skip=20):
+    x_vals = np.linspace(1,x_val, x_val * 10 + 1)
+    y_vals = np.linspace(1, y_val, y_val * 10 + 1)
     x, y = np.meshgrid(x_vals, y_vals)
 
     s = models.Streamline(time, x, y)
@@ -71,8 +69,8 @@ def plot_streamlines(time, min_val, max_val, skip=20):
     plt.streamplot(x, y, s.v1, s.v2, density=1, color='red')
     plt.quiver(x_decimated, y_decimated, v1_decimated, v2_decimated, scale=100)
     plt.title(f'time = {round(time,1)}')
-    plt.xlim(0, min_val)
-    plt.ylim(0, max_val)
+    plt.xlim(0, x_val)
+    plt.ylim(0, y_val)
     plt.xlabel('x1')
     plt.ylabel('x2')
     plt.axhline(0, color='black', linewidth=0.5)
