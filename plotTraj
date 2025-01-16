@@ -1,0 +1,17 @@
+import matplotlib.pyplot as plt
+from create_moveBody import move
+
+
+def plottr(x,y):
+    plt.plot(x,y)
+    plt.xlabel('x1')
+    plt.ylabel('x2')
+    plt.title('Траектория')
+    plt.grid()
+
+def movets(t0, t, n, x, y):
+    for i in range(len(x)):
+        res=move(t0, t, n, x[i], y[i])
+        plottr(res.x_tr_points, res.y_tr_points)
+    plt.grid(color='gray', linestyle='--', linewidth=0.5)
+    plt.show()
