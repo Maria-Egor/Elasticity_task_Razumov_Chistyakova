@@ -54,6 +54,31 @@ def plottr(x,y):
     plt.title('Траектория')
     plt.grid()
 
+def plot_streamlines(time, min_val, max_val, skip=20):
+    x_vals = np.linspace(1,min_val, abs(min_val) * 10 + 1)
+    y_vals = np.linspace(1, max_val, max_val * 10 + 1)
+    x, y = np.meshgrid(x_vals, y_vals)
+
+    s = Streamline(time, x, y)
+
+    x_decimated = x[::skip, ::skip]
+    y_decimated = y[::skip, ::skip]
+    v1_decimated = s.v1[::skip, ::skip]
+    v2_decimated = s.v2[::skip, ::skip]
+
+    plt.figure(figsize=(10, 6))
+    plt.streamplot(x, y, s.v1, s.v2, density=1, color='red')
+    plt.quiver(x_decimated, y_decimated, v1_decimated, v2_decimated, scale=100)
+    plt.title(f'time = {round(time,1)}')
+    plt.xlim(0, min_val)
+    plt.ylim(0, max_val)
+    plt.xlabel('x1')
+    plt.ylabel('x2')
+    plt.axhline(0, color='black', linewidth=0.5)
+    plt.axvline(0, color='black', linewidth=0.5)
+    plt.grid(color='gray', linestyle='--', linewidth=0.5)
+    plt.show()
+
 def movets(t0, t, n, x, y):
     for i in range(len(x)):
         res=move(t0, t, n, x[i], y[i])
