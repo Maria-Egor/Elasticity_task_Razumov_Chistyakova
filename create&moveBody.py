@@ -7,11 +7,11 @@ def create_Body(n):
     coord_y = []  # массив из координат точек
     x_c = 3  # положение центра кольца
     y_c = 3
-    for r in range(3):
+    for r in range(2):
         for i in range(n):
             alpha = 2 * math.pi * i / n #угол
-            x1 = x_c + (1 + r * 0.5) * math.cos(alpha)
-            y1 = y_c + (1 + r * 0.5) * math.sin(alpha)
+            x1 = x_c + (r + 1) * math.cos(alpha)
+            y1 = y_c + (r + 1) * math.sin(alpha)
 
             coord_x.append(x1)
             coord_y.append(y1)
