@@ -10,7 +10,7 @@ def create_ring(n):
     y_c = 3
     for r in range(2):
         for i in range(n):
-            alpha = 2 * math.pi * i / n #угол
+            alpha = 2 * math.pi * i / n #угол, отсчтываем от горизонтали против часовой стрелки
             x1 = x_c + (r + 1) * math.cos(alpha)
             y1 = y_c + (r + 1) * math.sin(alpha)
 
@@ -54,22 +54,25 @@ def plottr(x,y):
     plt.gca().set_aspect('equal', adjustable='datalim')
     plt.grid()
 
-def plot_streamlines(time, x_val, y_val, skip=20):
+def plot_streamlines(time, x_val, y_val):
+    h=20 #шаг для последующей выборки
     x_vals = np.linspace(1,x_val, x_val * 10 + 1)
     y_vals = np.linspace(1, y_val, y_val * 10 + 1)
-    x, y = np.meshgrid(x_vals, y_vals)
+    
+    x, y = np.meshgrid(x_vals, y_vals) #Создали "сетку"
 
+    x_choosen = x[::h, ::h] #Выборка (координаты начал векторов)
+    y_choosen = y[::h, ::h] 
+    
     s = models.Streamline(time, x, y)
-
-    x_decimated = x[::skip, ::skip]
-    y_decimated = y[::skip, ::skip]
-    v1_decimated = s.v1[::skip, ::skip]
-    v2_decimated = s.v2[::skip, ::skip]
+    v1_choosen = s.v1[::h, ::h]
+    v2_choosen = s.v2[::h, ::h]
 
     plt.figure(figsize=(10, 6))
     plt.streamplot(x, y, s.v1, s.v2, density=1, color='red')
-    plt.quiver(x_decimated, y_decimated, v1_decimated, v2_decimated, scale=100)
+    plt.quiver(x_choosen, y_choosen, v1_choosen, v2_choosen, scale=100)
     plt.title(f'time = {round(time,1)}')
+    plt.axis('equal')
     plt.xlim(0, x_val)
     plt.ylim(0, y_val)
     plt.xlabel('x1')
@@ -77,7 +80,6 @@ def plot_streamlines(time, x_val, y_val, skip=20):
     plt.axhline(0, color='black', linewidth=0.5)
     plt.axvline(0, color='black', linewidth=0.5)
     plt.grid(color='gray', linestyle='--', linewidth=0.5)
-    plt.axis('equal')
     plt.show()
 
 def movets(t0, t, n, x, y):
