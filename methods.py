@@ -51,6 +51,7 @@ def plottr(x,y):
     plt.xlabel('x1')
     plt.ylabel('x2')
     plt.title('Траектория')
+    plt.axis('equal')
     plt.grid()
 
 def plot_streamlines(time, x_val, y_val, skip=20):
@@ -76,6 +77,7 @@ def plot_streamlines(time, x_val, y_val, skip=20):
     plt.axhline(0, color='black', linewidth=0.5)
     plt.axvline(0, color='black', linewidth=0.5)
     plt.grid(color='gray', linestyle='--', linewidth=0.5)
+    plt.axis('equal')
     plt.show()
 
 def movets(t0, t, n, x, y):
@@ -87,6 +89,7 @@ def movets(t0, t, n, x, y):
         endx.append(res.x_tr_points[len(res.x_tr_points)-1]) #конечная координата по х
         endy.append(res.y_tr_points[len(res.x_tr_points)-1]) #конечная координата по у
     plt.grid(color='gray', linestyle='--', linewidth=0.5)
+    plt.axis('equal')
     plt.show()
     return endx,endy
 
@@ -108,4 +111,5 @@ def deformation(x,y,x_end,y_end):
     plt.xlabel('x1')
     plt.ylabel('x2')
     plt.title('Деформация тела')
+    plt.axis('equal')
     plt.show()
