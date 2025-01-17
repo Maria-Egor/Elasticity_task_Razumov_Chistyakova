@@ -51,7 +51,7 @@ def plottr(x,y):
     plt.xlabel('x1')
     plt.ylabel('x2')
     plt.title('Траектория')
-    plt.axis('equal')
+    plt.gca().set_aspect('equal', adjustable='datalim')
     plt.grid()
 
 def plot_streamlines(time, x_val, y_val, skip=20):
@@ -89,7 +89,7 @@ def movets(t0, t, n, x, y):
         endx.append(res.x_tr_points[len(res.x_tr_points)-1]) #конечная координата по х
         endy.append(res.y_tr_points[len(res.x_tr_points)-1]) #конечная координата по у
     plt.grid(color='gray', linestyle='--', linewidth=0.5)
-    plt.axis('equal')
+    plt.gca().set_aspect('equal', adjustable='datalim')
     plt.show()
     return endx,endy
 
@@ -108,8 +108,8 @@ def deformation(x,y,x_end,y_end):
     plt.plot(x_circle, y_circle, color='blue')
     plt.plot(x_end_c, y_end_c, color='red')
     plt.grid(color='gray', linestyle='--', linewidth=0.5)
+    plt.gca().set_aspect('equal', adjustable='datalim')
     plt.xlabel('x1')
     plt.ylabel('x2')
     plt.title('Деформация тела')
-    plt.axis('equal')
     plt.show()
