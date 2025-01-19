@@ -68,7 +68,6 @@ def plot_streamlines(time, x_val, y_val):
     v1_choosen = s.v1[::h, ::h]
     v2_choosen = s.v2[::h, ::h]
 
-    plt.figure(figsize=(10, 6))
     plt.streamplot(x, y, s.v1, s.v2, density=1, color='red')
     plt.quiver(x_choosen, y_choosen, v1_choosen, v2_choosen, scale=100)
     plt.title(f'time = {round(time,1)}')
